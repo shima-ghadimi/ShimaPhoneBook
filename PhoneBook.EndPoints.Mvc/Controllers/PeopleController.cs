@@ -24,6 +24,16 @@ namespace PhoneBook.EndPoints.Mvc.Controllers
             this.tagRepository = tagRepository;
             this.personRepository = personRepository;
         }
+
+
+        public IActionResult Index()
+        {
+            var allPerson = personRepository.List().ToList();
+
+            return View(allPerson);
+        }
+
+
         public IActionResult Add()
         {
             AddNewPersonDisplayViewModel model = new AddNewPersonDisplayViewModel();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using PhoneBook.Domain.Contrants.People;
 using PhoneBook.Domain.Contrants.Phones;
 using PhoneBook.Domain.Contrants.Tags;
+using PhoneBook.EndPoints.Mvc.Models.AAA;
 using PhoneBook.Infrastucture.DataLayer.Common;
 using PhoneBook.Infrastucture.DataLayer.People;
 using PhoneBook.Infrastucture.DataLayer.Phones;
@@ -36,6 +38,9 @@ namespace PhoneBook.EndPoints.Mvc
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddDbContext<UserDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("AAA")));
+
+            services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
         }
 
 
@@ -54,13 +59,14 @@ namespace PhoneBook.EndPoints.Mvc
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {               
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
+              
 
         }
     }
