@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhoneBook.EndPoints.Mvc.Models.AAA
 {
+
     public class AppUser: IdentityUser
     {
     }

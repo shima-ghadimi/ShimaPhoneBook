@@ -35,12 +35,21 @@ namespace PhoneBook.EndPoints.Mvc
 
             services.AddMvc();
             services.AddDbContext<PhoneBookContext>(c => c.UseSqlServer(Configuration.GetConnectionString("phoneBook")));
+            services.AddDbContext<UserDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("AAA")));
+
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
-            services.AddDbContext<UserDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("AAA")));
+            services.AddScoped<IPasswordValidator<AppUser>, MyPasswordValidator>();
 
-            services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<UserDbContext>();
+            services.AddScoped<IUserValidator<AppUser>, MyUserValidator>();
+            services.AddIdentity<AppUser, IdentityRole>(c=>{
+                c.Password.RequireDigit = false;
+                c.Password.RequireUppercase = false;
+                c.Password.RequiredLength = 6;
+                c.Password.RequireLowercase = false;
+                c.Password.RequiredUniqueChars =1;
+            }).AddEntityFrameworkStores<UserDbContext>();
         }
 
 

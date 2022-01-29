@@ -8,8 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PhoneBook.EndPoints.Mvc.Models.AAA
 {
-    public class UserDbContext: IdentityDbContext
+    public class UserDbContext: IdentityDbContext<AppUser>
     {
+    
         public UserDbContext(DbContextOptions options): base(options)
         {
 
