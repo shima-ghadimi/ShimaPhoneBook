@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PhoneBook.EndPoints.Mvc.Models.AAA;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PhoneBook.EndPoints.Mvc.Controllers
 {
+    //[Authorize(Roles ="Admin")]
     public class UserController : Controller
     {
         private UserManager<AppUser> userManager { get; set; }

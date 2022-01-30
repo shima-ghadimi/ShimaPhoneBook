@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PhoneBook.Domain.Contrants.People;
 using PhoneBook.Domain.Contrants.Tags;
 using PhoneBook.Domain.Core.People;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace PhoneBook.EndPoints.Mvc.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
         private readonly ITagRepository tagRepository;

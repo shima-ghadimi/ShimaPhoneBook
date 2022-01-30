@@ -43,7 +43,7 @@ namespace PhoneBook.EndPoints.Mvc
             services.AddScoped<IPasswordValidator<AppUser>, MyPasswordValidator>();
 
             services.AddScoped<IUserValidator<AppUser>, MyUserValidator>();
-            services.AddIdentity<AppUser, IdentityRole>(c=>{
+            services.AddIdentity<AppUser, MyIdentityRole>(c=>{
                 c.Password.RequireDigit = false;
                 c.Password.RequireUppercase = false;
                 c.Password.RequiredLength = 6;

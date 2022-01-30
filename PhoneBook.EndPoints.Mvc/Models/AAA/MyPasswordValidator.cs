@@ -8,6 +8,12 @@ namespace PhoneBook.EndPoints.Mvc.Models.AAA
 {
     public class MyPasswordValidator : IPasswordValidator<AppUser>
     {
+        //private UserDbContext userDbContext { get; set; }
+        //public MyPasswordValidator(UserDbContext userDbContext)
+        //{
+        //    this.userDbContext = userDbContext;
+        //}
+
         public Task<IdentityResult> ValidateAsync(UserManager<AppUser> manager, AppUser user, string password)
         {
             List<IdentityError> errors = new List<IdentityError>();
@@ -16,7 +22,12 @@ namespace PhoneBook.EndPoints.Mvc.Models.AAA
             {
                 errors.Add(new IdentityError() { Code = "Password", Description = "Usename is equal with Password" });
             }
-      
+
+            //if (userDbContext.badPasswords.Any(x=>x.Passwrod==password))
+            //{
+            //    errors.Add(new IdentityError() { Code = "Password", Description = "Password is not scurirty" });
+
+            //}
             return Task.FromResult(errors.Any() ?
               IdentityResult.Failed(errors.ToArray()) :
               IdentityResult.Success

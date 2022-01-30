@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace PhoneBook.EndPoints.Mvc.Models.AAA
 {
 
-    public class AppUser: IdentityUser
+    public class AppUser: IdentityUser<int>
     {
+    }
+
+    public class MyIdentityRole:IdentityRole<int> {
     }
 }

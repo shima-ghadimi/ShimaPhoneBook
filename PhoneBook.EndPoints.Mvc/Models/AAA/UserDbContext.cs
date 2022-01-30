@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PhoneBook.EndPoints.Mvc.Models.AAA
 {
-    public class UserDbContext: IdentityDbContext<AppUser>
+    public class UserDbContext : IdentityDbContext<AppUser, MyIdentityRole, int>
     {
-    
+        public DbSet<BadPassword> badPasswords { get; set; }
         public UserDbContext(DbContextOptions options): base(options)
         {
 
