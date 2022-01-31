@@ -10,8 +10,8 @@ using PhoneBook.EndPoints.Mvc.Models.AAA;
 namespace PhoneBook.EndPoints.Mvc.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20220130180049_initt")]
-    partial class initt
+    [Migration("20220130184705_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

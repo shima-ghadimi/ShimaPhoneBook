@@ -108,5 +108,17 @@ namespace PhoneBook.EndPoints.Mvc.Controllers
             }
             return View();
         }
+
+        public IActionResult AddToRole(string id, string roleName)
+        {
+            var user = userManager.FindByIdAsync(id).Result;
+            if (user != null)
+            {
+                var result = userManager.AddToRoleAsync(user, roleName).Result;
+
+            }
+            return RedirectToAction("Index");
+        }
+
     }
 }
